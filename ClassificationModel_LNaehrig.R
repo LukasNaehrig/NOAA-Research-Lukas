@@ -13,6 +13,7 @@ library(caret)
 library(doParallel)
 library(neuralnet)
 library(fastAdaboost)
+library(e1071)
 
 
 ## Loading data:
@@ -27,9 +28,9 @@ n <- nrow(geoClass)
 set.seed(123)
 s <- sample(n, 0.9 * n, replace = F)
 
-# ------------------------------------------------------------------------------ #
 
-## -- Section 1: Neural Network -- #
+## -- Splitting data into train and test: -- #
+
 #set.seed(998)
 #inTraining <- createDataPartition(geoClass$Classname, p = .9, list = FALSE)
 #training <- Sonar[ inTraining,]
@@ -38,7 +39,7 @@ s <- sample(n, 0.9 * n, replace = F)
 training <- geoClass[s,]
 testing  <- geoClass[-s,]
 
-# _________________________
+## -- Section 1: Neural Network -- #
 
 # set.seed(825)
 nnetModel <- train(Classification ~ ., data = training, 
@@ -92,4 +93,20 @@ adaModel <- train(Classification ~ ., data = training,
 adaModel
 accuracy5 <- predict(adaModel, newdata = training)
 accuracy6 <- predict(adaModel, newdata = testing)
+
+
+
+
+
+
+
+####### Different attempts:
+
+nnMod <- neuralnet(Classification ~ ., training, hidden = 3 , linear.output = T )
+nnMod
+
+
+#dat = data.frame(Classification, y = as.factor(y))
+svmfit = svm(Classification ~ ., data = training, kernel = "linear", cost = 10, scale = FALSE)
+print(svmfit)
 
