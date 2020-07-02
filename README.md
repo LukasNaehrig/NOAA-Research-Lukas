@@ -1,5 +1,9 @@
 # NOAA-Research-Lukas
 
+## Document: SVM_Boosted_Model
+- Experimenting with 6 different types of SVM models
+
+
 ## Document: Final_NNet_Model
 - This document should be run in the lab for ~3 days.
 - This is the final version of our Neural Network Model
