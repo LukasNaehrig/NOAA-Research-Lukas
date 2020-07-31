@@ -56,11 +56,15 @@ training_bc = dfAll.groupby('Classname').apply(lambda s: s.sample(nsamples_class
  
 from sklearn.neural_network import MLPClassifier
 
-X_train, X_test, y_train, y_test = train_test_split(features[feature_names],                                              labels, train_size = 0.9,
+X_train, X_test, y_train, y_test = train_test_split(features[feature_names],
+                                                    labels, train_size = 0.9,
+                                                    random_state = 42,
+                                                    stratify = labels)
 t0 = time.time()
 
 # ???????????????????
-nnet = MLPClassifier(solver = 'lbfgs', alpha = 1e-5, hidden_layer_sizes = (5, 2), random_state = 1)
+nnet = clf = MLPClassifier(solver='lbfgs', alpha=1e-5,
+                  hidden_layer_sizes=(15,), random_state=1)
 
 nnet.fit(X_train, y_train)
 t1 = time.time()
@@ -75,12 +79,3 @@ accuracy = accuracy_score(y_test, predictions)
 confmat = confusion_matrix(y_test, predictions)
 df_confmat = pd.DataFrame(confmat)
 plot_confusion_matrix(nnet, X_test, y_test)
-
-
-
-
-
-
-
-
-
