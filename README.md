@@ -22,3 +22,8 @@
 - Neural Net model (functioning, not scaled, accuracy ~ 40%)
 - SVM Model (functioning, run time too long to evaluate)
 - ADABoost Model (not functioning, data type errors)
+
+## Document: scikitClassifier
+- Conversion of neural network R code to python
+- Scikit MLP Classifier
+- Needs some work with parameters
