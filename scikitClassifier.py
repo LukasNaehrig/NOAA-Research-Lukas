@@ -29,7 +29,7 @@ x_train, x_test, y_train, y_test = train_test_split(x,y, test_size= 0.25, random
 # check from here on out:
 
 clf = MLPClassifier(hidden_layer_sizes=(100,), max_iter=200, alpha=0.0001,
-                     solver='sgd', verbose=10,  random_state=21, tol=0.001)
+                     solver='sgd', verbose=10,  random_state=21, tol=0.0001)
 clf.fit(x_train, y_train)
 y_pred = clf.predict(x_test)
 
@@ -42,6 +42,4 @@ sns.heatmap(cm, center=True)
 plt.show()
 
 # https://www.kaggle.com/ahmethamzaemra/mlpclassifier-example
-
-
 
